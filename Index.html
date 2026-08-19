@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Happy Birthday ❤️</title>
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+
+            font-family:
+                'Segoe UI',
+                Arial,
+                sans-serif;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ff758c,
+                    #ff7eb3,
+                    #ff9a9e
+                );
+
+            color: white;
+
+            min-height: 100vh;
+
+            overflow-x: hidden;
+
+        }
+
+
+        /* =========================
+           PEMBUKA
+        ========================= */
+
+        #opening {
+
+            min-height: 100vh;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: center;
+
+            align-items: center;
+
+            text-align: center;
+
+            padding: 25px;
+
+        }
+
+
+        .opening-heart {
+
+            font-size: 80px;
+
+            animation:
+                heartbeat 1.5s infinite;
+
+        }
+
+
+        #opening h1 {
+
+            font-size: 36px;
+
+            margin-top: 15px;
+
+        }
+
+
+        #opening p {
+
+            font-size: 17px;
+
+            margin-top: 15px;
+
+            line-height: 1.6;
+
+        }
+
+
+        .button {
+
+            margin-top: 30px;
+
+            padding: 15px 30px;
+
+            border: none;
+
+            border-radius: 50px;
+
+            background: white;
+
+            color: #ff4f81;
+
+            font-size: 17px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 8px 20px
+                rgba(0,0,0,0.2);
+
+        }
+
+
+        .button:active {
+
+            transform:
+                scale(0.95);
+
+        }
+
+
+        /* =========================
+           MAIN
+        ========================= */
+
+        #main {
+
+            display: none;
+
+            padding: 45px 15px;
+
+            text-align: center;
+
+        }
+
+
+        #main h1 {
+
+            font-size: 32px;
+
+            line-height: 1.3;
+
+        }
+
+
+        .subtitle {
+
+            margin-top: 12px;
+
+            font-size: 16px;
+
+            line-height: 1.6;
+
+        }
+
+
+        /* =========================
+           FOTO UTAMA
+        ========================= */
+
+        .main-photo {
+
+            width: 220px;
+
+            height: 220px;
+
+            object-fit: cover;
+
+            border-radius: 50%;
+
+            border: 6px solid white;
+
+            margin-top: 30px;
+
+            box-shadow:
+                0 10px 30px
+                rgba(0,0,0,0.3);
+
+        }
+
+
+        /* =========================
+           GALERI
+        ========================= */
+
+        .section-title {
+
+            margin-top: 55px;
+
+            margin-bottom: 20px;
+
+            font-size: 26px;
+
+        }
+
+
+        .gallery {
+
+            display: flex;
+
+            overflow-x: auto;
+
+            gap: 15px;
+
+            padding: 10px 5px 25px;
+
+            scroll-snap-type: x mandatory;
+
+            scrollbar-width: none;
+
+        }
+
+
+        .gallery::-webkit-scrollbar {
+
+            display: none;
+
+        }
+
+
+        .gallery img {
+    flex: 0 0 78%;
+
+    width: 78%;
+
+    height: 480px;
+
+    object-fit: contain;
+
+    background: rgba(255,255,255,0.15);
+
+    border-radius: 20px;
+
+    border: 4px solid white;
+
+    box-shadow:
+        0 8px 25px
+        rgba(0,0,0,0.25);
+
+    scroll-snap-align: center;
+
+    cursor: pointer;
+}
+
+
+        /* =========================
+           SURAT
+        ========================= */
+
+        .letter {
+
+            margin: 35px auto;
+
+            max-width: 600px;
+
+            padding: 28px 22px;
+
+            background:
+                rgba(255,255,255,0.2);
+
+            backdrop-filter:
+                blur(10px);
+
+            border-radius: 25px;
+
+            box-shadow:
+                0 10px 30px
+                rgba(0,0,0,0.15);
+
+            text-align: left;
+
+        }
+
+
+        .letter h2 {
+
+            text-align: center;
+
+            margin-bottom: 20px;
+
+            font-size: 25px;
+
+        }
+
+
+        .letter p {
+
+            font-size: 16px;
+
+            line-height: 1.9;
+
+        }
+
+
+        /* =========================
+           ENDING
+        ========================= */
+
+        .ending {
+
+            margin-top: 50px;
+
+            padding-bottom: 80px;
+
+        }
+
+
+        .ending h2 {
+
+            font-size: 30px;
+
+            margin-bottom: 15px;
+
+        }
+
+
+        .ending p {
+
+            font-size: 17px;
+
+            line-height: 1.7;
+
+        }
+
+
+        .big-heart {
+
+            font-size: 65px;
+
+            margin-top: 20px;
+
+            animation:
+                heartbeat 1.5s infinite;
+
+        }
+
+
+        /* =========================
+           HATI TERBANG
+        ========================= */
+
+        .heart {
+
+            position: fixed;
+
+            bottom: -40px;
+
+            z-index: 999;
+
+            pointer-events: none;
+
+            animation:
+                fly 6s linear forwards;
+
+        }
+
+
+        /* =========================
+           ANIMASI
+        ========================= */
+
+        @keyframes heartbeat {
+
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.15);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+
+        }
+
+
+        @keyframes fly {
+
+            0% {
+
+                transform:
+                    translateY(0)
+                    rotate(0deg);
+
+                opacity: 0;
+
+            }
+
+            20% {
+
+                opacity: 1;
+
+            }
+
+            100% {
+
+                transform:
+                    translateY(-110vh)
+                    rotate(360deg);
+
+                opacity: 0;
+
+            }
+
+        }
+
+
+        /* =========================
+           HP KECIL
+        ========================= */
+
+        @media (max-width: 400px) {
+
+            #opening h1 {
+
+                font-size: 30px;
+
+            }
+
+
+            .opening-heart {
+
+                font-size: 65px;
+
+            }
+
+
+            #main h1 {
+
+                font-size: 28px;
+
+            }
+
+
+            .main-photo {
+
+                width: 190px;
+
+                height: 190px;
+
+            }
+
+
+            .gallery img {
+
+                height: 260px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         HALAMAN PEMBUKA
+    ========================= -->
+
+    <section id="opening">
+
+        <div class="opening-heart">
+
+            ❤️
+
+        </div>
+
+
+        <h1>
+
+            Hallo,Adee Sayang❤️
+
+        </h1>
+
+
+        <p>
+
+            Ada sesuatu yang udah mas siapin
+            khusus buat adee...
+
+            <br>
+
+            Jangan langsung pergi ya 😚
+
+        </p>
+
+
+        <button
+            class="button"
+            onclick="openWebsite()">
+
+            🎁 Pencet ini cantik
+
+        </button>
+
+    </section>
+
+
+
+    <!-- =========================
+         HALAMAN UTAMA
+    ========================= -->
+
+    <section id="main">
+
+
+        <h1>
+
+            🎂 Happy Birthday Ariny Cassia Putri🎂
+
+            <br>
+
+            My Love ❤️
+
+        </h1>
+
+
+        <p class="subtitle">
+
+            Selamat ulang tahun yaa untuk
+            seseorang yang sangat berarti
+            buat mas.
+
+        </p>
+
+
+        <!-- FOTO UTAMA -->
+
+        <img
+            src="WhatsApp Image 2026-08-19 at 20.02.13.jpeg"
+            class="main-photo"
+            alt="Foto kita">
+
+
+
+        <!-- =========================
+             GALERI
+        ========================= -->
+
+        <h2 class="section-title">
+
+            📸 sayangku ❤️
+
+        </h2>
+
+
+        <p class="subtitle">
+
+            Geser foto ke kiri atau kanan 👈👉
+
+        </p>
+
+
+        <div class="gallery">
+
+
+            <img
+                src="Ariny 1.jpg.jpeg"
+                alt="Kenangan 1">
+
+
+            <img
+                src="Ariny 2.jpeg"
+                alt="Kenangan 2">
+
+
+            <img
+                src="WhatsApp Image 2026-08-19 at 20.02.15.jpeg"
+                alt="Kenangan 3">
+
+
+            <img
+                src="WhatsApp Image 2026-08-19 at 19.43.08 (1).jpeg"
+                alt="Kenangan 4">
+
+
+            <img
+                src="WhatsApp Image 2026-08-19 at 20.02.13 (1).jpeg"
+                alt="Kenangan 5">
+
+
+        </div>
+
+
+
+        <!-- =========================
+             SURAT
+        ========================= -->
+
+        <div class="letter">
+
+
+            <h2>
+
+                💌 Surat Untukmu
+
+            </h2>
+
+
+            <p>
+
+                Selamat ulang tahun,
+                sayangku ❤️
+
+                <br><br>
+
+
+                Hari ini adalah hari yang spesial,
+                karena seseorang yang berarti
+                buat mas sedang bertambah usia.
+
+                <br><br>
+
+
+                mas mau ngucapin terimakasih banyak buat kamu
+                karena kamu sudah hadir buat mas.
+
+                Terima kasih untuk semua cerita,
+                tawa, perhatian, dan waktu yang
+                sudah kita lalui bersama.
+
+                <br><br>
+
+
+                Semoga di usia barumu ini,
+                kamu selalu diberikan kebahagiaan,
+                kesehatan,kesembuhan dan kemudahan dalam
+                semua impianmu.
+                semangat ya sayang, kamu pasti bisa!!
+
+                <br><br>
+
+
+                Semoga senyummu selalu ada,
+                dan semoga aku masih diberikan
+                kesempatan untuk menemani
+                banyak cerita dalam hidupmu.
+
+                <br><br>
+
+
+                mungkin mas bukan orang yang
+                sempurna.
+
+                Tapi mas selalu berusaha
+                menjadi seseorang yang bisa
+                buat kamu merasa dicintai.
+
+                <br><br>
+
+
+                Terima kasih sudah menjadi
+                bagian dari hidup mas.
+
+                <br><br>
+
+
+                Sekali lagi...
+
+                <br><br>
+
+
+                <strong>
+
+                    Happy Birthday,
+                    sayang, sehat sehat yaaa ❤️
+
+                </strong>
+
+                <br><br>
+
+
+                I love you ❤️
+
+            </p>
+
+        </div>
+
+
+
+        <!-- =========================
+             ENDING
+        ========================= -->
+
+        <div class="ending">
+
+
+            <h2>
+
+                ❤️ I Love You ❤️
+
+            </h2>
+
+
+            <p>
+
+                Semoga kita bisa terus menciptakan
+                banyak kenangan indah bersama.
+
+                <br>
+
+                Sampai nanti...
+
+                <br>
+
+                sampai cerita kita menjadi
+                cerita yang panjang.
+
+            </p>
+
+
+            <div class="big-heart">
+
+                ❤️
+
+            </div>
+
+
+            <button
+                class="button"
+                onclick="makeHearts()">
+
+                ❤️ Klik Aku
+
+            </button>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================= -->
+
+    <script>
+
+
+        function openWebsite() {
+
+
+            document.getElementById(
+                "opening"
+            ).style.display = "none";
+
+
+            document.getElementById(
+                "main"
+            ).style.display = "block";
+
+
+            makeHearts();
+
+        }
+
+
+
+        function makeHearts() {
+
+
+            for (
+                let i = 0;
+                i < 35;
+                i++
+            ) {
+
+
+                let heart =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                heart.className =
+                    "heart";
+
+
+                heart.innerHTML =
+                    "❤️";
+
+
+                heart.style.left =
+                    Math.random() *
+                    100 +
+                    "vw";
+
+
+                heart.style.fontSize =
+                    (
+                        Math.random() *
+                        25 +
+                        15
+                    ) +
+                    "px";
+
+
+                heart.style.animationDuration =
+                    (
+                        Math.random() *
+                        3 +
+                        3
+                    ) +
+                    "s";
+
+
+                document.body.appendChild(
+                    heart
+                );
+
+
+                setTimeout(
+                    function() {
+
+                        heart.remove();
+
+                    },
+                    7000
+                );
+
+            }
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>
